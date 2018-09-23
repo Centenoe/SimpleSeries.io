@@ -1,1 +1,1 @@
-# simple-timer
+# Simple-Timer
