@@ -4,96 +4,286 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>Title</title>
-<style type="text/css">
-    input{
-        display: inline-block;
-        box-sizing:border-box;
-        outline-style: hidden;
-        border: hidden;
-        height:200px;
-        width:30%;
-        font-size:600%;
-        text-align:center;
-    }
-    #test{
-        text-align: center;
-        display: block;
-        margin-right: auto;
-        margin-left: auto;
-    }
-    #buttontest{
-        outline-style: hidden;
-        border:hidden;
-        text-align: center;
-        position: relative;
-        -webkit-animation-name: example; 
-        -webkit-animation-duration: 0.5s; 
-        animation-name: example;
-        animation-duration: .5s;
-    }
-    body{
-    }
-    .Button{
-        -webkit-transition-duration: 0.4s;
-        transition-duration: 0.4s;
-        border: 2px solid #ffa500;
-        background-color: transparent;
-        border-radius: 8px;
-    }
-    .Button:hover{
-        background-color: #ffa500; /* Orange */
-        color: white;
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    }
-    @-webkit-keyframes example {
-        0%   {left:0px; top:0px;}
-        50%  {top:2px;}
-        100% {left:0px; top:0px;}
-    }
-    @keyframes example {
-        0%   {left:0px; top:0px;}
 
-        50%  {top:10px;}
+    <!-- CSS for the page-->
+    <style type="text/css">
+        /*
+                   This makes sure that the Hour, Minute, Second, Start and Reset buttons are centered and stay centered
+               */
+        input {
+            display: inline-block;
+            box-sizing:border-box;
+            outline-style: hidden;
+            border: hidden;
+            height:200px;
+            width:31%;
+            font-size: 4vw;
+            text-align:center;
+            background-color: transparent;
+        }
 
-        100% {left:0px; top:0px;}
-    }
-</style>
+        /*
+            This will center the whole page
+         */
+        #container {
+            margin-top: 10vw;
+            font-size: 4vw;
+        }
+
+        /*
+            Adds animation and centers the buttons
+         */
+        #buttonContainer {
+            outline-style: hidden;
+            border:hidden;
+            text-align: center;
+            position: relative;
+            -webkit-animation-name: buttonJump;
+            -webkit-animation-duration: 0.5s;
+            animation-name: buttonJump;
+            animation-duration: .5s;
+            margin-top: 5vw;
+        }
+
+        /*
+            Colors and animation
+        */
+        .button {
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+            border: 2px solid #ffa500;
+            background-color: transparent;
+            border-radius: 8px;
+        }
+
+        /*
+            On hover the buttons will change color, size and add shadow.
+        */
+        .button:hover {
+            background-color: #ffa500;
+            color: white;
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        }
+        /*
+            Animation jump
+        */
+        @-webkit-keyframes buttonJump {
+            0%   {left:0px; top:0px;}
+            50%  {top:10px;}
+            100% {left:0px; top:0px;}
+        }
+        /*
+            Animation jump
+        */
+        @keyframes buttonJump {
+            0%   {left:0px; top:0px;}
+            50%  {top:10px;}
+            100% {left:0px; top:0px;}
+        }
 
 
-        <form method="get">
-            <div id="test">
-            <input type="text" placeholder="Hour" align="middle"> :
-            <input type="text" placeholder="Minute"align="middle"> :
-            <input type="text" placeholder="Second"align="middle"><br>
-                <div id="buttontest">
-            <input type="button" value="reset" class="Button">
-            <input type="submit" value="start" class="Button" onsubmit="startTimer">
-                </div>
-            </div>
-        </form>
+        /* The switch - the box around the slider */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
 
-        <script>
-            var startTimer = setInterval(myTimer, 1000);
+        /* Hide default HTML checkbox */
+        .switch input {display:none;}
 
-            var time = 5;
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
 
-            function myTimer() {
-                if (time == 0) {
-                    return
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        body.dark-mode {
+            background: #000810;
+            color: white;
+        }
+
+        input.dark-mode {
+            color: white;
+        }
+
+        .button.dark-mode {
+            color: white;
+        }
+
+        .button.dark-mode:hover {
+            background-color: #ffa500;
+            color: white;
+            box-shadow: 0 12px 16px 0 rgba(255, 139, 0, 0.26), 0 17px 50px 0 rgba(245, 255, 248, 0.25);
+        }
+
+    </style>
+
+    <!-- this is the jquery to update global javascript array and change the background color-->
+    <script>
+
+        //the background color changer
+        $(document).ready(function () {
+            $("#mode").change(function(){
+                if ($(this).prop("checked")) {
+                    $("body").addClass("dark-mode");
+                    $("input").addClass("dark-mode");
+                    $(".button").addClass("dark-mode");
+                } else {
+                    $("body").removeClass("dark-mode");
+                    $("input").removeClass("dark-mode");
+                    $(".button").removeClass("dark-mode");
                 }
-                time -= 1;
-                document.getElementById("demo").innerHTML = time + "";
-            }
-        </script>
-    </div>
+            });
+        });
+
+        // the global array changer
+        $(document).ready(function() {
+            $("#sec").change(function() {
+                time[2] = $("#sec").val();
+            });
+            $("#min").change(function() {
+                time[1] = $("#min").val();
+            });
+            $("#hour").change(function() {
+                time[0] = $("#hour").val();
+            });
+        });
+
+    </script>
 </head>
 <body>
-<form></form>
-
-<p id="demo"></p>
+<label for="mode" class="switch"> <input id="mode" type="checkbox"> <span class="slider round navbar-right"></span></label>
+<!-- this contains the input and buttons on the page-->
+<form>
+    <div id="container">
+        <input type="text" placeholder="Hour" align="middle" id="hour"> :
+        <input type="text" placeholder="Minute" align="middle" id="min"> :
+        <input type="text" placeholder="Second" align="middle" id="sec"><br>
+        <div id="buttonContainer">
+            <input type="button" value="reset" class="button" onclick="clearTimer()" id="reset">
+            <input type="button" value="start" class="button" id="submit" onclick="startTimer()">
+        </div>
+    </div>
+</form>
 </body>
-</html>
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- This is the Timer Logic -->
+<script>
+    // [hour, minutes, seconds]
+    var time = [0, 0, 0];
+    var timer;
+
+    // validates the input and starts the timer
+    function startTimer() {
+        validate();
+        timer = setInterval( myTimer, 1000)
+    }
+
+    // validate the inputs by going through each time slot in the time array
+    function validate() {
+        if (isNaN(time[2]) || time[2] < 0 || (time[2] % 1) != 0) {
+            alert("Not a Natural Number");
+            time[2] = 0;
+        } else if (time[2] > 60) {
+            time[2] = 60;
+        }
+
+        if (isNaN(time[1]) || time[1] < 0 || (time[1] % 1) != 0) {
+            alert("Not a Natural Number");
+            time[1] = 0;
+        } else if (time[1] > 60) {
+            time[1] = 60;
+        }
+
+        if (isNaN(time[0]) || time[0] < 0 || (time[0] % 1) != 0) {
+            alert("Not a Natural Number");
+            time[0] = 0;
+        }
+        update();
+    }
+
+    //stop the timer interval
+    function stopInterval() {
+        clearInterval(timer);
+    }
+
+    //clear the timer when the user clicks Reset
+    function clearTimer() {
+        time[0] = time[1] = time[2] = 0;
+        update();
+        stopInterval();
+    }
+
+    //update the html elements on the screen
+    function update() {
+        document.getElementById("sec").value = time[2] + "";
+        document.getElementById("min").value = time[1] + "";
+        document.getElementById("hour").value = time[0] + "";
+    }
+
+    //this represents the actual timer which has all timer logic
+    function myTimer() {
+        if (time[2] == 0 && time[1] == 0 && time[0] == 0) {
+            stopInterval();
+            alert("Done");
+            return;
+        } else if (time[2] == 0 && time[1] == 0 && time[0] != 0) {
+            time[0]--;
+            time[1] += 59;
+            time[2] += 60;
+        } else if (time[2] == 0 && time[1] != 0) {
+            time[1]--;
+            time[2] += 60;
+        }
+        time[2]--;
+        update();
+    }
+</script>
+</html>
