@@ -236,9 +236,11 @@
     // validates the input and starts the timer
     function startTimer() {
         validate();
-        timer = setInterval( myTimer, 1000)
+        if (timer == null) {
+            timer = setInterval(myTimer, 1000);
+        }
     }
-
+    
     // validate the inputs by going through each time slot in the time array
     function validate() {
         if (isNaN(time[2]) || time[2] < 0 || (time[2] % 1) != 0) {
@@ -265,6 +267,7 @@
     //stop the timer interval
     function stopInterval() {
         clearInterval(timer);
+        timer = null;
     }
 
     //clear the timer when the user clicks Reset
