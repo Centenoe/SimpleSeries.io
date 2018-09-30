@@ -163,6 +163,19 @@
             box-shadow: 0 12px 16px 0 rgba(255, 139, 0, 0.26), 0 17px 50px 0 rgba(245, 255, 248, 0.25);
         }
 
+        @media only screen and (max-width: 769px) {
+
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+
+
     </style>
 
     <!-- this is the jquery to update global javascript array and change the background color-->
@@ -202,13 +215,13 @@
 <label for="mode" class="switch"> <input id="mode" type="checkbox"> <span class="slider round"></span></label>
 <!-- this contains the input and buttons on the page-->
 <form>
-    <div id="container">
-        <input type="text" placeholder="Hour" align="middle" id="hour"> :
-        <input type="text" placeholder="Minute" align="middle" id="min"> :
-        <input type="text" placeholder="Second" align="middle" id="sec"><br>
+    <div id="container" class="col-sm-12">
+        <input type="number" placeholder="Hour" align="middle" id="hour"> :
+        <input type="number" placeholder="Minute" align="middle" id="min"> :
+        <input type="number" placeholder="Second" align="middle" id="sec"><br>
         <div id="buttonContainer">
-            <input type="button" value="Reset" class="button" onclick="clearTimer()" id="reset">
-            <input type="button" value="Start" class="button" id="submit" onclick="startTimer()">
+            <input type="button" value="reset" class="button" onclick="clearTimer()" id="reset">
+            <input type="button" value="start" class="button" id="submit" onclick="startTimer()">
         </div>
     </div>
 </form>
