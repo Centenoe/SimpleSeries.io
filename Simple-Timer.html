@@ -11,174 +11,7 @@
     <title>Simple Timer</title>
 
     <!-- CSS for the page-->
-    <style type="text/css">
-        /*
-                   This makes sure that the Hour, Minute, Second, Start and Reset buttons are centered and stay centered
-               */
-        input {
-            display: inline-block;
-            box-sizing:border-box;
-            outline-style: hidden;
-            border: hidden;
-            height:200px;
-            width:31%;
-            font-size: 4vw;
-            text-align:center;
-            background-color: transparent;
-        }
-
-        /*
-            This will center the whole page
-         */
-        #container {
-            margin-top: 10vw;
-            font-size: 4vw;
-        }
-
-        /*
-            Adds animation and centers the buttons
-         */
-        #buttonContainer {
-            outline-style: hidden;
-            border:hidden;
-            text-align: center;
-            position: relative;
-            -webkit-animation-name: buttonJump;
-            -webkit-animation-duration: 0.5s;
-            animation-name: buttonJump;
-            animation-duration: .5s;
-            margin-top: 5vw;
-        }
-
-        /*
-            Colors and animation
-        */
-        .button {
-            -webkit-transition-duration: 0.4s;
-            transition-duration: 0.4s;
-            border: 2px solid #ffa500;
-            background-color: transparent;
-            border-radius: 8px;
-        }
-
-        /*
-            On hover the buttons will change color, size and add shadow.
-        */
-        .button:hover {
-            background-color: #ffa500;
-            color: white;
-            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-        }
-        /*
-            Animation jump
-        */
-        @-webkit-keyframes buttonJump {
-            0%   {left:0px; top:0px;}
-            50%  {top:10px;}
-            100% {left:0px; top:0px;}
-        }
-        /*
-            Animation jump
-        */
-        @keyframes buttonJump {
-            0%   {left:0px; top:0px;}
-            50%  {top:10px;}
-            100% {left:0px; top:0px;}
-        }
-
-
-        /* The switch - the box around the slider */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        /* Hide default HTML checkbox */
-        .switch input {display:none;}
-
-        /* The slider */
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        input:checked + .slider {
-            background-color: #2196F3;
-        }
-
-        input:focus + .slider {
-            box-shadow: 0 0 1px #2196F3;
-        }
-
-        input:checked + .slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
-        }
-
-        /* Rounded sliders */
-        .slider.round {
-            border-radius: 34px;
-        }
-
-        .slider.round:before {
-            border-radius: 50%;
-        }
-
-        body.dark-mode {
-            background: #000810;
-            color: white;
-        }
-
-        input.dark-mode {
-            color: white;
-        }
-
-        .button.dark-mode {
-            color: white;
-        }
-
-        .button.dark-mode:hover {
-            background-color: #ffa500;
-            color: white;
-            box-shadow: 0 12px 16px 0 rgba(255, 139, 0, 0.26), 0 17px 50px 0 rgba(245, 255, 248, 0.25);
-        }
-
-        @media only screen and (max-width: 769px) {
-
-        }
-
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            margin: 0;
-        }
-
-
-    </style>
+    <link href="CSS/main.css" rel="stylesheet" type="text/css">
 
     <!-- this is the jquery to update global javascript array and change the background color-->
     <script>
@@ -218,9 +51,11 @@
 <!-- this contains the input and buttons on the page-->
 <form>
     <div id="container" class="col-sm-12">
+        <div id="outputContainer">
         <input type="number" placeholder="Hour" align="middle" id="hour"> :
         <input type="number" placeholder="Minute" align="middle" id="min"> :
         <input type="number" placeholder="Second" align="middle" id="sec"><br>
+        </div>
         <div id="buttonContainer">
             <input type="button" value="reset" class="button" onclick="clearTimer()" id="reset">
             <input type="button" value="start" class="button" id="submit" onclick="startTimer()">
