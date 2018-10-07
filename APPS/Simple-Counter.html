@@ -17,7 +17,7 @@
     <script>
         //the background color changer
         $(document).ready(function () {
-            $("#mode").change(function(){
+            $("#mode").change(function () {
                 if ($(this).prop("checked")) {
                     $("body").addClass("dark-mode");
                     $("input").addClass("dark-mode");
@@ -28,6 +28,10 @@
                     $(".button").removeClass("dark-mode");
                 }
             });
+
+            $("body").keypress(function () {
+                incrementCounter();
+            })
         });
     </script>
 </head>

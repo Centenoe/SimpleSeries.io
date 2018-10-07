@@ -34,3 +34,12 @@ function clearTimer(time, timer) {
     updateElements(TIME_IDS, time);
     return stopInterval(timer);
 }
+
+function isEmpty(time) {
+    for (i = 0; i < time.length; i++) {
+        if (time[i] != 0) {
+            return false;
+        }
+    }
+    return true;
+}

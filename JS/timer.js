@@ -44,8 +44,8 @@ function myTimer() {
 }
 
 function timeSwitch() {
-    if (time[2] == 0 && time[1] == 0 && time[0] == 0) {
-        stopInterval(timer);
+    if (isEmpty(time)) {
+        timer = stopInterval(timer);
         alert("Done");
         done = true;
     } else if (time[2] == 0 && time[1] == 0 && time[0] != 0) {

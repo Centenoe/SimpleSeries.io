@@ -4,23 +4,11 @@
  * @type {[number,number,number]}
  */
 var time = [0, 0, 0, 0];
-const TIME_IDS = ["hour", "min", "sec", "tenthsec"];
+const TIME_IDS = ["hour", "min", "sec", "hundsec"];
 var timer = null;
-var stopped = true;
-
 
 function startTimer() {
-    if (timer == null) {
-        stopped = false;
-        timer = setInterval(myTimer, 100);
-    } else if (timer != null) {
-        alert("called");
-        stopped = false;
-        startTimer()
-    } else {
-        stopped = true;
-        stopInterval(timer)
-    }
+    timer = setInterval(myTimer, 10);
 }
 
 function stopTimer() {
@@ -28,7 +16,6 @@ function stopTimer() {
 }
 
 function resetTimer() {
-    stopped = true;
     timer = clearTimer(time, timer);
 }
 
@@ -41,7 +28,7 @@ function myTimer() {
 }
 
 function timeSwitch() {
-    if (time[3] == 10) {
+    if (time[3] == 100) {
         time[2] += 1;
         time[3] = 0;
     }

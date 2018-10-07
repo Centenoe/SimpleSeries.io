@@ -36,8 +36,10 @@
             $("#start").click(function() {
                 if($(this).val() == "Start") {
                     $(this).val("Stop");
+                    startTimer();
                 } else {
                     $(this).val("Start");
+                    stopTimer();
                 }
             })
         });
@@ -52,11 +54,11 @@
             <input type="number" value="0" align="middle" id="hour" disabled> :
             <input type="number" value="0" align="middle" id="min" disabled> :
             <input type="number" value="0" align="middle" id="sec" disabled> :
-            <input type="number" value="0" align="middle" id="tenthsec" disabled><br>
+            <input type="number" value="0" align="middle" id="hundsec" disabled><br>
         </div>
         <div id="buttonContainer">
             <input type="button" value="Reset" class="button" onclick="resetTimer()">
-            <input type="button" value="Start" class="button" id="start" onclick="startTimer()">
+            <input type="button" value="Start" class="button" id="start">
         </div>
     </div>
 </form>
