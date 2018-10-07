@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/counter.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
     <title>Simple Counter</title>
 
     <!-- CSS for the page-->
@@ -196,24 +198,4 @@
     </div>
 </form>
 </body>
-
-<!-- This is the Timer Logic -->
-    <script>
-    var count = [0];
-
-    function clearCount() {
-        count[0] = 0;
-        update();
-    }
-
-    function incrementCounter() {
-        count[0]++;
-        update();
-    }
-
-    //update the html elements on the screen
-    function update() {
-        document.getElementById("count").value = count[0] + "";
-    }
-</script>
 </html>

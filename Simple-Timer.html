@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/timer.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
     <title>Simple Timer</title>
 
     <!-- CSS for the page-->
@@ -226,80 +228,4 @@
     </div>
 </form>
 </body>
-
-<!-- This is the Timer Logic -->
-<script>
-    // [hour, minutes, seconds]
-    var time = [0, 0, 0];
-    var timer;
-
-    // validates the input and starts the timer
-    function startTimer() {
-        validate();
-        if (timer == null) {
-            timer = setInterval(myTimer, 1000);
-        }
-    }
-    
-    // validate the inputs by going through each time slot in the time array
-    function validate() {
-        if (isNaN(time[2]) || time[2] < 0 || (time[2] % 1) != 0) {
-            alert("Not a Natural Number");
-            time[2] = 0;
-        } else if (time[2] > 60) {
-            time[2] = 60;
-        }
-
-        if (isNaN(time[1]) || time[1] < 0 || (time[1] % 1) != 0) {
-            alert("Not a Natural Number");
-            time[1] = 0;
-        } else if (time[1] > 60) {
-            time[1] = 60;
-        }
-
-        if (isNaN(time[0]) || time[0] < 0 || (time[0] % 1) != 0) {
-            alert("Not a Natural Number");
-            time[0] = 0;
-        }
-        update();
-    }
-
-    //stop the timer interval
-    function stopInterval() {
-        clearInterval(timer);
-        timer = null;
-    }
-
-    //clear the timer when the user clicks Reset
-    function clearTimer() {
-        time[0] = time[1] = time[2] = 0;
-        update();
-        stopInterval();
-    }
-
-    //update the html elements on the screen
-    function update() {
-        document.getElementById("sec").value = time[2] + "";
-        document.getElementById("min").value = time[1] + "";
-        document.getElementById("hour").value = time[0] + "";
-    }
-
-    //this represents the actual timer which has all timer logic
-    function myTimer() {
-        if (time[2] == 0 && time[1] == 0 && time[0] == 0) {
-            stopInterval();
-            alert("Done");
-            return;
-        } else if (time[2] == 0 && time[1] == 0 && time[0] != 0) {
-            time[0]--;
-            time[1] += 59;
-            time[2] += 60;
-        } else if (time[2] == 0 && time[1] != 0) {
-            time[1]--;
-            time[2] += 60;
-        }
-        time[2]--;
-        update();
-    }
-</script>
 </html>
