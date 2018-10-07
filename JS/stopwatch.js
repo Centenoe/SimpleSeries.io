@@ -6,17 +6,34 @@
 var time = [0, 0, 0, 0];
 const TIME_IDS = ["hour", "min", "sec", "tenthsec"];
 var timer = null;
+var stopped = true;
 
 
 function startTimer() {
     if (timer == null) {
-        done = false;
+        stopped = false;
         timer = setInterval(myTimer, 100);
+    } else if (timer != null) {
+        alert("called");
+        stopped = false;
+        startTimer()
+    } else {
+        stopped = true;
+        stopInterval(timer)
     }
 }
 
+function stopTimer() {
+    stopInterval(timer);
+}
+
+function resetTimer() {
+    stopped = true;
+    timer = clearTimer(time, timer);
+}
+
 function myTimer() {
-    if (time[3] == 0) {
+    if (time[3] >= 10) {
         timeSwitch();
     }
     time[3]++;
@@ -24,16 +41,16 @@ function myTimer() {
 }
 
 function timeSwitch() {
-    if (time[2] == 0 && time[1] == 0 && time[0] == 0) {
-        stopInterval(timer);
-        alert("Done");
-        done = true;
-    } else if (time[2] == 0 && time[1] == 0 && time[0] != 0) {
-        time[0]--;
-        time[1] += 59;
-        time[2] += 60;
-    } else if (time[2] == 0 && time[1] != 0) {
-        time[1]--;
-        time[2] += 60;
+    if (time[3] == 10) {
+        time[2] += 1;
+        time[3] = 0;
+    }
+    if (time[2] == 60) {
+        time[1] += 1;
+        time[2] = 0;
+    }
+    if (time[1] == 60) {
+        time[0] += 1;
+        time[1] = 0;
     }
 }

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../JS/timer.js"></script>
+    <script type="text/javascript" src="../JS/stopwatch.js"></script>
     <script type="text/javascript" src="../JS/main.js"></script>
     <title>Simple Timer</title>
 
@@ -31,19 +31,16 @@
             });
         });
 
-        // the global array changer
-        $(document).ready(function() {
-            $("#sec").change(function() {
-                time[2] = $("#sec").val();
-            });
-            $("#min").change(function() {
-                time[1] = $("#min").val();
-            });
-            $("#hour").change(function() {
-                time[0] = $("#hour").val();
-            });
-        });
 
+        $(document).ready(function() {
+            $("#start").click(function() {
+                if($(this).val() == "Start") {
+                    $(this).val("Stop");
+                } else {
+                    $(this).val("Start");
+                }
+            })
+        });
     </script>
 </head>
 <body>
@@ -58,8 +55,8 @@
             <input type="number" value="0" align="middle" id="tenthsec" disabled><br>
         </div>
         <div id="buttonContainer">
-            <input type="button" value="Reset" class="button" onclick="clearTimer()" id="reset">
-            <input type="button" value="Start" class="button" id="submit" onclick="startTimer()">
+            <input type="button" value="Reset" class="button" onclick="resetTimer()">
+            <input type="button" value="Start" class="button" id="start" onclick="startTimer()">
         </div>
     </div>
 </form>
