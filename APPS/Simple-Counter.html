@@ -6,16 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/timer.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-    <title>Simple Timer</title>
+    <script type="text/javascript" src="../JS/counter.js"></script>
+    <script type="text/javascript" src="../JS/main.js"></script>
+    <title>Simple Counter</title>
 
     <!-- CSS for the page-->
-    <link href="CSS/main.css" rel="stylesheet" type="text/css">
+    <link href="../CSS/main.css" rel="stylesheet" type="text/css">
 
     <!-- this is the jquery to update global javascript array and change the background color-->
     <script>
-
         //the background color changer
         $(document).ready(function () {
             $("#mode").change(function(){
@@ -30,35 +29,19 @@
                 }
             });
         });
-
-        // the global array changer
-        $(document).ready(function() {
-            $("#sec").change(function() {
-                time[2] = $("#sec").val();
-            });
-            $("#min").change(function() {
-                time[1] = $("#min").val();
-            });
-            $("#hour").change(function() {
-                time[0] = $("#hour").val();
-            });
-        });
-
     </script>
 </head>
 <body>
 <label for="mode" class="switch"> <input id="mode" type="checkbox"> <span class="slider round"></span></label>
 <!-- this contains the input and buttons on the page-->
 <form>
-    <div id="container" class="col-sm-12">
+    <div id="container">
         <div id="outputContainer">
-        <input type="number" placeholder="Hour" align="middle" id="hour"> :
-        <input type="number" placeholder="Minute" align="middle" id="min"> :
-        <input type="number" placeholder="Second" align="middle" id="sec"><br>
+        <input type="number" placeholder="0" align="center" id="count" disabled><br>
         </div>
         <div id="buttonContainer">
-            <input type="button" value="reset" class="button" onclick="clearTimer()" id="reset">
-            <input type="button" value="start" class="button" id="submit" onclick="startTimer()">
+            <input type="button" value="Reset" class="button" onclick="clearCount()">
+            <input type="button" value="Count" class="button" onclick="incrementCounter()">
         </div>
     </div>
 </form>
